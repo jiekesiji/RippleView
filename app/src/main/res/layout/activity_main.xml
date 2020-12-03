@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:radius="150"
+    app:direction="out2Side"
     app:ripple_anim_color="@color/colorPrimary"
     app:ripple_anim_type="fillRipple"
     app:stroke_width="18"

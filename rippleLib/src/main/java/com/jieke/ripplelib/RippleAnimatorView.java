@@ -28,6 +28,7 @@ public class RippleAnimatorView extends RelativeLayout {
     private ArrayList<RippleCircleView> rippleList;
     private ArrayList<Animator> animatorList;
     private boolean animationRunning = false;
+    private int duration;
     Paint mPaint;
 
     int rippleColor;
@@ -56,7 +57,7 @@ public class RippleAnimatorView extends RelativeLayout {
         int rippleType = typedArray.getInt(R.styleable.RippleAnimatorView_ripple_anim_type, 0);
         radius = typedArray.getInteger(R.styleable.RippleAnimatorView_radius, 54);
         strokeWidth = typedArray.getInteger(R.styleable.RippleAnimatorView_stroke_width, 1);
-
+        duration = typedArray.getInt(R.styleable.RippleAnimatorView_direction, 0);
         typedArray.recycle();
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -88,9 +89,9 @@ public class RippleAnimatorView extends RelativeLayout {
             rippleList.add(rippleCircleView);
 
 
-            PropertyValuesHolder holder1 = PropertyValuesHolder.ofFloat("scaleX", maxValue, 1f);
-            PropertyValuesHolder holder2 = PropertyValuesHolder.ofFloat("scaleY", maxValue,1f);
-            PropertyValuesHolder holder3 = PropertyValuesHolder.ofFloat("alpha",0f, 1f );
+            PropertyValuesHolder holder1 = PropertyValuesHolder.ofFloat("scaleX", duration == 0 ? maxValue : 1f, duration == 0 ? 1f : maxValue);
+            PropertyValuesHolder holder2 = PropertyValuesHolder.ofFloat("scaleY", duration == 0 ? maxValue : 1f, duration == 0 ? 1f : maxValue);
+            PropertyValuesHolder holder3 = PropertyValuesHolder.ofFloat("alpha", duration == 0 ? 0f : 1f, duration == 0 ? 1f : 0f);
 
             ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(rippleCircleView, holder1, holder2, holder3);
             animator.setDuration(rippleDuration);
@@ -120,8 +121,8 @@ public class RippleAnimatorView extends RelativeLayout {
     }
 
 
-    public synchronized void stopAnimation(){
-        if (isRunning()){
+    public synchronized void stopAnimation() {
+        if (isRunning()) {
             for (RippleCircleView rippleCircleView : rippleList) {
                 rippleCircleView.setVisibility(View.INVISIBLE);
             }
