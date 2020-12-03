@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jieke.ripplelib.RippleAnimatorView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#000"
+    android:id="@+id/rippleAnimator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:radius="150"
+    app:ripple_anim_color="@color/colorPrimary"
+    app:ripple_anim_type="fillRipple"
+    app:stroke_width="18"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/music"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/music" />
+
+</com.jieke.ripplelib.RippleAnimatorView>
